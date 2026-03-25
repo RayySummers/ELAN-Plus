@@ -1,0 +1,56 @@
+{
+  "text": "Lorem ipsum. Aut quisquam.",
+  "segments": [
+    {
+      "id": 0,
+      "seek": 0,
+      "start": 0.0,
+      "end": 3.62,
+      "text": " Lorem ipsum.",
+      "tokens": [
+        50364,
+        865,
+        11,
+        321,
+        360,
+        411,
+        42853,
+        11,
+        500,
+        380,
+        321,
+        30,
+        492,
+        411,
+        9792,
+        721,
+        50545
+      ],
+      "temperature": 0.0,
+      "avg_logprob": -0.5176907181739807,
+      "compression_ratio": 1.446808510638298,
+      "no_speech_prob": 0.13004466891288757
+    },
+    {
+      "id": 1,
+      "seek": 0,
+      "start": 5.38,
+      "end": 7.38,
+      "text": " Aut quisquam.",
+      "tokens": [
+        50633,
+        509,
+        829,
+        264,
+        10252,
+        322,
+        50733
+      ],
+      "temperature": 0.0,
+      "avg_logprob": -0.5176907181739807,
+      "compression_ratio": 1.446808510638298,
+      "no_speech_prob": 0.13004466891288757
+    }
+  ],
+  "language": "en"
+}
