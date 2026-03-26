@@ -1142,25 +1142,73 @@ public class VLCJ4MediaPlayer extends ControllerManager implements
 //    void printControls(Player player) {
 //    }
 
-    @Override
-    public void cleanUpOnClose() {
-    	if (player != null) {
-    		player.controls().stop();
-    		//player.events().removeMediaPlayerEventListener(listener);// necessary?
-    	}
-    	if (playerComponent != null) {
-    		playerComponent.release();
-    		playerComponent = null;
-    	}
-    	if (callbackPlayerComponent != null) {
-    		callbackPlayerComponent.release();
-    		callbackPlayerComponent = null;
-    	}
-    	if (audioPlayerComponent != null) {
-    		audioPlayerComponent.release();
-    		audioPlayerComponent = null;
-    	}
-    }
+     @Override
+/**
+ * Cleans up resources used by this media player.
+ * <p>
+ * This method stops any running threads, releases media player components,
+ * and frees native resources to prevent memory leaks. It should be called
+ * when the player is no longer needed.
+ */
+ public void cleanUpOnClose() {
+```
+  // Stop the end watcher thread
+  if (endWatcher != null) {
+   endWatcher.interrupt();
+   endWatcher = null;
+  }
+
+  // Set playing flags to false to avoid inconsistent state
+  if (playingFlag != null) {
+   playingFlag.set(false);
+  }
+  if (playSelectionFlag != null) {
+   playSelectionFlag.set(false);
+  }
+
+  // Stop and release the player
+  if (player != null) {
+   player.controls().stop();
+   player.release();
+   player = null;
+  }
+
+  // Release player components
+  if (playerComponent != null) {
+   playerComponent.release();
+   playerComponent = null;
+  }
+  if (callbackPlayerComponent != null) {
+   callbackPlayerComponent.release();
+   callbackPlayerComponent = null;
+  }
+  if (audioPlayerComponent != null) {
+   audioPlayerComponent.release();
+   audioPlayerComponent = null;
+  }
+
+  // Release the factory (crucial for native memory!)
+  if (factory != null) {
+   factory.release();
+   factory = null;
+  }
+
+  // Null out auxiliary fields to prevent memory leaks
+  videoSurfaceComponent = null;
+  mouseAdapter = null;
+  layoutManager = null;
+  firstVideoTrackInfo = null;
+  media = null;
+  videoSize = null;
+
+  // Release or nullify bTimer
+  bTimer = null;
+ }
+
+  // Release or nullify bTimer
+  bTimer = null;
+ }
+
 
 
     @Override
